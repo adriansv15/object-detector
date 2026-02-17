@@ -14,9 +14,12 @@ WORKDIR /app
 # 1. Install dependencies first for better caching
 # Note: ultralytics-opencv-headless ensures no GUI dependencies are pulled
 COPY --chown=user backend/requirements.txt .
+# 1. Install CPU-only Torch first (Crucial: add /whl/cpu to the URL)
+# This finds the Python 3.13 compatible CPU version
 RUN pip install --no-cache-dir --upgrade pip && \
-    pip install --no-cache-dir torch torchvision --index-url https://download.pytorch.org && \
+    pip install --no-cache-dir torch torchvision --index-url https://download.pytorch.org/whl/cpu && \
     pip install --no-cache-dir -r requirements.txt
+
 
 # 2. Copy only the backend code into the container
 COPY --chown=user backend/ /app/
