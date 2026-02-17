@@ -9,9 +9,9 @@ app_port: 7860
 
 # 🚀 Object Detector Monorepo
 
-[![Tests](https://github.com/adriansv15/object-detector.git)](https://github.com/adriansv15/object-detector.git)
-[![Hugging Face Space](https://img.shields.io)](https://huggingface.co/adrians777/object-detector)
-[![Vercel Deployment](https://img.shields.io)](https://object-detector-ten.vercel.app/)
+[!][Tests](https://github.com/adriansv15/object-detector.git)](https://github.com/adriansv15/object-detector.git)
+[!][Hugging Face Space](https://img.shields.io)](https://huggingface.co/adrians777/object-detector)
+[!][Vercel Deployment](https://img.shields.io)](https://object-detector-ten.vercel.app/)
 
 # Project Architecture & Tech Stack
 
