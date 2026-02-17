@@ -25,4 +25,6 @@ COPY --chown=user backend/ /app/
 ENV PYTHONPATH=/app
 
 # 4. Start the FastAPI server on port 7860 (Hugging Face default)
-CMD ["uvicorn", "app:app", "--host", "0.0.0.0", "--port", "7860"]
+# Point to the app object INSIDE the backend folder
+CMD ["uvicorn", "backend.app:app", "--host", "0.0.0.0", "--port", "7860"]
+
