@@ -2,7 +2,7 @@
 import React, { useEffect, useRef, useState } from "react";
 import Webcam from "react-webcam";
 
-const API_URL = process.env.NEXT_PUBLIC_API_URL;
+const WS_URL = process.env.NEXT_PUBLIC_WS_URL;
 
 export default function CameraStream() {
   const webcamRef = useRef<Webcam>(null);
@@ -11,7 +11,7 @@ export default function CameraStream() {
 
   useEffect(() => {
     // 1. Initialize WebSocket
-    const socket = new WebSocket(`wss://${API_URL}/ws`);
+    const socket = new WebSocket(`${WS_URL}/ws`);
     socketRef.current = socket;
 
     socket.onopen = () => console.log("✅ WS Connected");
