@@ -11,7 +11,7 @@ export default function CameraStream() {
 
   useEffect(() => {
     // 1. Initialize WebSocket
-    const socket = new WebSocket(`ws://${API_URL}/ws`);
+    const socket = new WebSocket(`wss://${API_URL}/ws`);
     socketRef.current = socket;
 
     socket.onopen = () => console.log("✅ WS Connected");
