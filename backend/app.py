@@ -9,6 +9,7 @@ from ultralytics import YOLO
 from PIL import Image
 import numpy as np
 import cv2
+import asyncio
 
 # Load variables from .env file
 load_dotenv()
@@ -60,7 +61,8 @@ async def websocket_endpoint(websocket: WebSocket):
     await websocket.accept()
     try:
         while True:
-            data = await websocket.receive_text()
+            # Use a timeout to prevent the loop from hanging if no data comes
+            data = await asyncio.wait_for(websocket.receive_text(), timeout=5.0)
             
             # 1. Decode Frame
             _, encoded = data.split(",", 1) if "," in data else ("", data)
@@ -82,6 +84,9 @@ async def websocket_endpoint(websocket: WebSocket):
                 
                 processed_base64 = base64.b64encode(buffer).decode('utf-8')
                 await websocket.send_text(f"data:image/jpeg;base64,{processed_base64}")
-                
+
+    except asyncio.TimeoutError:
+        pass  # Keep the connection aliv
+
     except Exception as e:
         print(f"Connection closed or Error: {e}")
