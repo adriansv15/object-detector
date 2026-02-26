@@ -68,7 +68,7 @@ async def websocket_endpoint(websocket: WebSocket):
     
     # Send a tiny string immediately to "warm up" the pipe
     await websocket.send_text("HEARTBEAT") 
-    
+
     try:
         while True:
             # Use a timeout to prevent the loop from hanging if no data comes
@@ -99,4 +99,4 @@ async def websocket_endpoint(websocket: WebSocket):
         pass  # Keep the connection aliv
 
     except Exception as e:
-        print(f"Connection closed or Error: {e}")
+        print(f"Connection closed or Error: {e}",)

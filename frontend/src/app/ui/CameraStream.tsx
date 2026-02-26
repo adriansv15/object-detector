@@ -39,7 +39,7 @@ export default function CameraStream() {
 
     return () => {
       clearInterval(intervalId);
-      socket.close();
+      socket.close(1000, 'Connection terminated by user');
     };
   }, []);
 
