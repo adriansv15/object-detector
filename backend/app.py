@@ -5,6 +5,7 @@ import base64
 from dotenv import load_dotenv
 from fastapi import FastAPI, File, UploadFile, WebSocket
 from fastapi.middleware.cors import CORSMiddleware
+from fastapi.middleware.trustedhost import TrustedHostMiddleware
 from ultralytics import YOLO
 from PIL import Image
 import numpy as np
@@ -26,7 +27,11 @@ app.add_middleware(
     allow_origins=["*"],
     allow_methods=["*"],
     allow_headers=["*"],
+    allow_credentials=True,
 )
+
+# Hugging Face needs to be a trusted host
+app.add_middleware(TrustedHostMiddleware, allowed_hosts=["*"])
 
 # Load the YOLO model once when starting the server
 model = YOLO("models/yolo26n.pt") 
