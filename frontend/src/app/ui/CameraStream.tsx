@@ -51,7 +51,7 @@ export default function CameraStream() {
             audio={false}
             ref={webcamRef}
             screenshotFormat="image/jpeg"
-            videoConstraints={{ width: 160, height: 120 }}
+            videoConstraints={{ width: 640, height: 480 }}
         />
         </div>
 
