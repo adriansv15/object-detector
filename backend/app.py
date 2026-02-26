@@ -64,6 +64,11 @@ async def process_yolo(file: UploadFile = File(...)):
 @app.websocket("/ws")
 async def websocket_endpoint(websocket: WebSocket):
     await websocket.accept()
+    print("✅ Connection Accepted")
+    
+    # Send a tiny string immediately to "warm up" the pipe
+    await websocket.send_text("HEARTBEAT") 
+    
     try:
         while True:
             # Use a timeout to prevent the loop from hanging if no data comes
